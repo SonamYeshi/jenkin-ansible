@@ -1,0 +1,21 @@
+- name: configure webserver
+  hosts: all
+  tasks:
+  - name: install pkg
+    yum:
+     name: httpd
+     state: present
+  - name: copy website
+    copy:
+     content: "Hello Well Come to Jenkin with ansible"
+     dest: /var/www/html/index.html
+  - name: restart service
+    service:
+     name: httpd
+     state: restarted
+     enabled: yes
+  - name: create user
+    user:
+     name: sonam
+     state: present
+
